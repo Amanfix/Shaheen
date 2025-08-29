@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Shaheen Bakers | Tehsil Road, Usta Muhammad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Shaheen Bakers — Sweets, Biscuits, Cakes & Custom Orders. Tehsil Road, Usta Muhammad. Call 0300-3611996 or 0838612333. Order on WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Palette derived from your image (orange/black) */
+      --brand: #e98116;          /* primary orange */
+      --brand-600:#b5620f;       /* darker orange */
+      --accent:#ffb14a;          /* warm highlight */
+      --bg:#ffffff;
+      --surface:#fff9f2;         /* subtle warm surface */
+      --text:#111111;
+      --muted:#5b5b5b;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --shadow-soft: 0 6px 18px rgba(0,0,0,.06);
+    }
+
+    * { box-sizing: border-box }
+    html,body { margin:0; padding:0 }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none }
+    img { max-width: 100%; display: block }
+
+    .container { width: min(1160px, 92vw); margin: 0 auto }
+
+    /* Navbar */
+    .nav {
+      position: sticky; top:0; z-index: 40;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      border-bottom: 1px solid #f1d9bf;
+    }
+    .nav-inner {
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+    }
+    .brand {
+      display:flex; align-items:center; gap:12px;
+    }
+    .brand-logo {
+      width:42px; height:42px; border-radius: 12px;
+      background:
+        radial-gradient(80% 80% at 30% 30%, color-mix(in oklab, var(--accent) 70%, white) 0, transparent 60%),
+        linear-gradient(135deg, color-mix(in oklab, var(--brand) 88%, white) 0%, var(--brand-600) 100%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), var(--shadow-soft);
+    }
+    .brand-name {
+      font: 700 22px/1 Playfair Display, serif;
+      letter-spacing:.2px;
+    }
+    .nav-links {
+      display:flex; gap:22px; align-items:center;
+    }
+    .nav-links a { color: var(--muted); font-weight:500; }
+    .nav-links a:hover { color: var(--text) }
+    .cta {
+      display:inline-flex; align-items:center; gap:10px;
+      background: var(--brand); color: #fff; padding: 10px 16px; border-radius: 999px;
+      box-shadow: var(--shadow-soft);
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+      border: 1px solid color-mix(in srgb, var(--brand) 85%, white);
+    }
+    .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+    .cta:active { transform: translateY(0) scale(.98) }
+
+    /* Mobile nav */
+    .menu-toggle { display:none; background:transparent; border:0; padding:10px; border-radius:10px }
+    .menu-toggle:hover { background: #fff2e6 }
+    @media (max-width: 900px) {
+      .nav-links { display:none; position:absolute; left:0; right:0; top:64px; background: var(--bg); border-bottom:1px solid #f1d9bf; padding: 14px 4vw; }
+      .nav-links.show { display:flex; flex-direction: column; gap:14px }
+      .menu-toggle { display:block }
+    }
+
+    /* Hero */
+    .hero { padding: 72px 0 36px; background: linear-gradient(180deg, #fff, var(--surface)); }
+    .hero-grid {
+      display:grid; grid-template-columns: 1.2fr .9fr; gap: 40px; align-items:center;
+    }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; gap:30px }
+    }
+    .badge {
+      display:inline-flex; align-items:center; gap:10px;
+      color: var(--brand-600);
+      background: color-mix(in srgb, var(--brand) 12%, white);
+      border:1px solid color-mix(in srgb, var(--brand) 24%, white);
+      padding: 8px 12px; border-radius: 999px; font-weight:600; font-size: 13px;
+    }
+    .h1 {
+      font: 700 46px/1.12 Playfair Display, serif;
+      letter-spacing:.2px; margin: 14px 0 12px;
+    }
+    .lead {
+      color: var(--muted); font-size: 17px; max-width: 56ch; margin-bottom: 16px;
+    }
+    .hero-ctas { display:flex; gap:12px; flex-wrap: wrap; margin-top: 10px }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px; padding: 12px 16px; border-radius: 12px; border:1px solid #f1d9bf; background:#fff; font-weight:600;
+      transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); border-color: #edcaa4 }
+    .btn-primary {
+      background: var(--brand); color:#fff; border-color: color-mix(in srgb, var(--brand) 85%, white);
+    }
+    .btn-outline { background: transparent; }
+    .btn-outline:hover { background:#fff }
+
+    .hero-art {
+      background: linear-gradient(180deg, #fff, #fff6eb);
+      border-radius: var(--radius);
+      border: 1px solid #f1d9bf;
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+    .tile-grid {
+      display:grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+    }
+    .tile {
+      border-radius: 14px; border: 1px solid #f1d9bf; padding: 16px;
+      background:#fff; box-shadow: var(--shadow-soft);
+      display:flex; gap:12px; align-items:center;
+    }
+    .icon {
+      width:44px; height:44px; border-radius: 12px;
+      display:grid; place-items:center; font-size: 22px; color: #fff;
+      background: var(--brand);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+    }
+    .tile h4 { margin: 2px 0 2px; font-size: 16px }
+    .tile p { margin:0; color: var(--muted); font-size: 13px }
+
+    /* Sections */
+    .section { padding: 48px 0 }
+    .section h2 {
+      font: 700 28px/1.2 Playfair Display, serif;
+      margin: 0 0 18px;
+    }
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px }
+    @media (max-width: 920px){ .grid-3 { grid-template-columns: 1fr 1fr } }
+    @media (max-width: 620px){ .grid-3 { grid-template-columns: 1fr } }
+    .card {
+      background:#fff; border: 1px solid #f1d9bf; border-radius: 16px; overflow:hidden;
+      box-shadow: var(--shadow-soft); display:flex; flex-direction: column;
+    }
+    .card-media {
+      aspect-ratio: 16/9;
+      background:
+        radial-gradient(80% 80% at 30% 30%, color-mix(in oklab, var(--brand) 30%, white) 0, transparent 60%),
+        linear-gradient(135deg, color-mix(in oklab, var(--accent) 70%, white) 0%, color-mix(in oklab, var(--brand) 16%, white) 100%);
+    }
+    .card-body { padding: 16px }
+    .chip {
+      display:inline-flex; align-items:center; gap:6px;
+      background: color-mix(in srgb, var(--brand) 6%, white);
+      border:1px solid color-mix(in srgb, var(--brand) 18%, white);
+      color: var(--brand-600); padding:6px 10px; border-radius: 999px; font-size: 12px; font-weight:600;
+      margin-right: 6px; margin-bottom: 8px;
+    }
+
+    /* Features */
+    .features { display:grid; grid-template-columns: repeat(3,1fr); gap: 14px }
+    @media (max-width: 900px){ .features { grid-template-columns: 1fr 1fr } }
+    @media (max-width: 600px){ .features { grid-template-columns: 1fr } }
+    .feature {
+      border:1px solid #f1d9bf; border-radius: 14px; padding: 14px; background:#fff; box-shadow: var(--shadow-soft);
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .feature .icon { font-size: 18px; width:38px; height:38px }
+
+    /* Callout */
+    .callout {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 8%, white), white);
+      border:1px solid #f1d9bf; padding: 18px; border-radius: 16px; box-shadow: var(--shadow-soft);
+      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer { padding: 36px 0; border-top: 1px solid #f1d9bf; margin-top: 40px }
+    .foot { display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; }
+    @media (max-width: 900px){ .foot { grid-template-columns: 1fr } }
+
+    /* Modal */
+    .modal {
+      position: fixed; inset:0; display:none; place-items:center; z-index: 60;
+      background: color-mix(in srgb, black 30%, transparent);
+      padding: 16px;
+    }
+    .modal.show { display:grid }
+    .dialog {
+      width: min(720px, 94vw); background:#fff; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      border: 1px solid #f1d9bf;
+      animation: pop .15s ease-out;
+    }
+    @keyframes pop { from{ transform: translateY(6px) scale(.98); opacity:.94 } }
+    .dialog-head {
+      padding: 14px 16px; border-bottom: 1px solid #f1d9bf; display:flex; align-items:center; justify-content:space-between;
+      background: linear-gradient(180deg, #fff, #fff8f0);
+    }
+    .dialog-body { padding: 14px 16px; }
+    .dialog-foot { padding: 12px 16px; border-top: 1px solid #f1d9bf; background:#fff; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap: wrap }
+    .close { background:transparent; border:0; padding:8px; border-radius: 10px }
+    .close:hover { background:#fff2e6 }
+
+    /* Form */
+    .form-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px }
+    @media (max-width: 700px){ .form-grid { grid-template-columns: 1fr } }
+    .field { display:flex; flex-direction: column; gap: 6px }
+    .field label { font-size: 13px; color: var(--muted); font-weight:600 }
+    .input, .select, .textarea {
+      width:100%; padding: 10px 12px; border-radius: 10px; border:1px solid #edd1ad; background:#fff;
+      transition: border-color .2s, box-shadow .2s;
+      font: inherit;
+    }
+    .input:focus, .select:focus, .textarea:focus {
+      outline: none; border-color: color-mix(in srgb, var(--brand) 40%, #edd1ad);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 12%, transparent);
+    }
+    .textarea { min-height: 92px; resize: vertical }
+    .hint { font-size:12px; color: var(--muted) }
+
+    .pill { padding: 8px 12px; border-radius: 999px; border: 1px solid #edd1ad; background:#fff }
+    .row { display:flex; gap:10px; flex-wrap: wrap; align-items:center }
+    .spacer { height: 8px }
+
+    .toast {
+      display:none; position: fixed; bottom: 16px; right: 16px; background: var(--brand); color:#fff; padding: 12px 16px; border-radius: 12px; box-shadow: var(--shadow);
+    }
+    .toast.show { display:block }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <div>
+          <div class="brand-name">Shaheen Bakers</div>
+          <div style="color:var(--muted); font-size:12px">Tehsil Road, Usta Muhammad</div>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#sweets">Sweets</a>
+        <a href="#biscuits">Biscuits</a>
+        <a href="#cakes">Cakes</a>
+        <a href="#custom">Custom Orders</a>
+        <a href="#contact">Contact</a>
+        <a href="#" class="cta" data-open-order>Order Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">📍 Tehsil Road, Usta Muhammad</span>
+        <h1 class="h1">Fresh sweets, biscuits & cakes — crafted daily</h1>
+        <p class="lead">Shaheen Bakers serves all kinds of sweets, bakery items, and custom cakes. We also carry general store essentials. Order online or WhatsApp us for pickup or delivery.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" data-open-order>Order Now</button>
+          <a href="#cakes" class="btn btn-outline">Explore Cakes</a>
+          <a class="btn" href="https://wa.me/923003611996?text=Hi%20Shaheen%20Bakers%2C%20I%20want%20to%20order" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="tile-grid">
+          <div class="tile">
+            <div class="icon" aria-hidden="true">🍮</div>
+            <div>
+              <h4>Sweets</h4>
+              <p>Gulab Jamun • Jalebi • Barfi • Laddu</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="icon" aria-hidden="true">🍪</div>
+            <div>
+              <h4>Biscuits</h4>
+              <p>Nankhatai • Zeera • Butter • Almond</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="icon" aria-hidden="true">🎂</div>
+            <div>
+              <h4>Cakes</h4>
+              <p>Chocolate • Black Forest • Fruit • Custom</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="icon" aria-hidden="true">🛒</div>
+            <div>
+              <h4>General Store</h4>
+              <p>Everyday essentials available in-store</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2>Categories</h2>
+        <div class="grid-3">
+          <article class="card" id="sweets">
+            <div class="card-media" aria-hidden="true"></div>
+            <div class="card-body">
+              <div><span class="chip">Sweets</span></div>
+              <h3 style="margin:4px 0 8px">Traditional Sweets</h3>
+              <p class="lead" style="font-size:14px">Fresh mithai made daily with quality ingredients.</p>
+              <div class="spacer"></div>
+              <div class="row">
+                <button class="btn" data-open-order data-category="Sweets">Order Sweets</button>
+                <button class="btn btn-outline" onclick="scrollToEl('#features')">Why Us</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" id="biscuits">
+            <div class="card-media" aria-hidden="true"></div>
+            <div class="card-body">
+              <div><span class="chip">Biscuits</span></div>
+              <h3 style="margin:4px 0 8px">Biscuits & Cookies</h3>
+              <p class="lead" style="font-size:14px">Perfect with tea — crisp, buttery, and fresh.</p>
+              <div class="spacer"></div>
+              <div class="row">
+                <button class="btn" data-open-order data-category="Biscuits">Order Biscuits</button>
+                <button class="btn btn-outline" onclick="scrollToEl('#features')">Why Us</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" id="cakes">
+            <div class="card-media" aria-hidden="true"></div>
+            <div class="card-body">
+              <div>
+                <span class="chip">Cakes</span>
+                <span class="chip">Custom</span>
+              </div>
+              <h3 style="margin:4px 0 8px">Cakes for Every Occasion</h3>
+              <p class="lead" style="font-size:14px">Birthdays, weddings, or just because — we’ve got you.</p>
+              <div class="spacer"></div>
+              <div class="row">
+                <button class="btn" data-open-order data-category="Cakes">Order Cake</button>
+                <button class="btn btn-outline" data-open-order data-category="Cakes" data-custom="true">Custom Cake</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="features">
+          <div class="feature">
+            <div class="icon">🌾</div>
+            <div>
+              <h4 style="margin:2px 0 6px">Quality Ingredients</h4>
+              <p class="lead" style="font-size:14px">Pure flavors, fresh batches, halal certified.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="icon">⏱️</div>
+            <div>
+              <h4 style="margin:2px 0 6px">Fresh Daily</h4>
+              <p class="lead" style="font-size:14px">Baked every morning so you get the freshest taste.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="icon">🎨</div>
+            <div>
+              <h4 style="margin:2px 0 6px">Custom Designs</h4>
+              <p class="lead" style="font-size:14px">From minimal to grand — share your idea, we’ll make it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="custom">
+      <div class="container">
+        <div class="callout">
+          <div>
+            <h3 style="margin:6px 0 6px">Need a custom cake?</h3>
+            <div class="lead" style="font-size:14px">Send a reference image and your message. We’ll confirm design, price, and delivery time.</div>
+          </div>
+          <div class="row">
+            <button class="btn btn-primary" data-open-order data-category="Cakes" data-custom="true">Start Custom Order</button>
+            <a class="btn" href="tel:+923003611996">Call Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container foot">
+      <div>
+        <div class="brand" style="margin-bottom:10px">
+          <div class="brand-logo" aria-hidden="true"></div>
+          <div>
+            <div class="brand-name" style="font-size:20px">Shaheen Bakers</div>
+            <div style="color:var(--muted); font-size:13px">Tehsil Road, Usta Muhammad</div>
+          </div>
+        </div>
+        <p class="lead" style="font-size:14px">Sweets • Bakers • General Store</p>
+        <div class="row" style="margin-top:8px">
+          <a class="pill" href="tel:+923003611996">📞 +92 300 3611996</a>
+          <a class="pill" href="tel:+92838612333">☎️ +92 838 612333</a>
+          <a class="pill" href="https://maps.google.com/?q=Tehsil+Road,+Usta+Muhammad" target="_blank">📍 Get Directions</a>
+          <a class="pill" href="https://wa.me/923003611996" target="_blank">💬 WhatsApp</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="margin:6px 0 10px">Quick Links</h4>
+        <div style="display:grid; gap:8px">
+          <a href="#sweets">Sweets</a>
+          <a href="#biscuits">Biscuits</a>
+          <a href="#cakes">Cakes</a>
+          <a href="#custom">Custom Orders</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="margin:6px 0 10px">Social</h4>
+        <div style="display:grid; gap:8px">
+          <a href="#" target="_blank">Instagram</a>
+          <a href="#" target="_blank">Facebook</a>
+          <a href="https://wa.me/923003611996" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-top:16px; color:var(--muted); font-size:12px">
+      © <span id="year"></span> Shaheen Bakers. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Order Modal -->
+  <div class="modal" id="orderModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="dialog" role="document">
+      <div class="dialog-head">
+        <strong>Place Your Order</strong>
+        <button class="close" id="orderClose" aria-label="Close">✕</button>
+      </div>
+      <form id="orderForm">
+        <div class="dialog-body">
+          <div class="form-grid">
+            <div class="field">
+              <label for="customerName">Your Name</label>
+              <input class="input" id="customerName" name="customerName" placeholder="Full name" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input class="input" id="phone" name="phone" type="tel" placeholder="+92..." required />
+            </div>
+
+            <div class="field">
+              <label for="category">Category</label>
+              <select class="select" id="category" name="category" required>
+                <option value="">Select</option>
+                <option value="Sweets">Sweets</option>
+                <option value="Biscuits">Biscuits</option>
+                <option value="Cakes">Cakes</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="item">Item</label>
+              <select class="select" id="item" name="item" required>
+                <option value="">Select an item</option>
+              </select>
+              <div class="hint">Choose from popular items or type custom below.</div>
+            </div>
+
+            <div class="field" id="cakeFields" style="display:none">
+              <label for="cakeSize">Cake Size/Weight</label>
+              <select class="select" id="cakeSize" name="cakeSize">
+                <option value="">Select</option>
+                <option>1 lb</option>
+                <option>2 lb</option>
+                <option>3 lb</option>
+                <option>5 lb</option>
+                <option>Custom</option>
+              </select>
+            </div>
+
+            <div class="field" id="cakeFlavorField" style="display:none">
+              <label for="cakeFlavor">Cake Flavor</label>
+              <select class="select" id="cakeFlavor" name="cakeFlavor">
+                <option value="">Select</option>
+                <option>Chocolate</option>
+                <option>Vanilla</option>
+                <option>Red Velvet</option>
+                <option>Black Forest</option>
+                <option>Fruit</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="quantity">Quantity</label>
+              <input class="input" type="number" id="quantity" name="quantity" value="1" min="1" />
+            </div>
+
+            <div class="field">
+              <label for="date">Preferred Date</label>
+              <input class="input" id="date" name="date" type="date" required />
+            </div>
+
+            <div class="field">
+              <label for="time">Preferred Time</label>
+              <input class="input" id="time" name="time" type="time" />
+            </div>
+
+            <div class="field">
+              <label for="method">Pickup/Delivery</label>
+              <select class="select" id="method" name="method">
+                <option>Pickup</option>
+                <option>Delivery</option>
+              </select>
+            </div>
+
+            <div class="field" id="addressField" style="display:none">
+              <label for="address">Delivery Address</label>
+              <input class="input" id="address" name="address" placeholder="Street, area" />
+            </div>
+
+            <div class="field" style="grid-column: 1 / -1">
+              <label for="notes">Message / Customization</label>
+              <textarea class="textarea" id="notes" name="notes" placeholder="Any notes, inscription text, or special request"></textarea>
+            </div>
+
+            <div class="field" style="grid-column: 1 / -1">
+              <label for="refImage">Reference Image (optional)</label>
+              <input class="input" id="refImage" type="file" accept="image/*" />
+              <div class="hint">Useful for custom cake designs.</div>
+            </div>
+          </div>
+        </div>
+        <div class="dialog-foot">
+          <div class="hint">We’ll call/WhatsApp to confirm your order and total.</div>
+          <div class="row">
+            <button type="button" class="btn" id="cancelOrder">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Order</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">✅ Order submitted! We’ll contact you shortly.</div>
+
+  <script>
+    // Helpers
+    const $ = (s, el=document) => el.querySelector(s);
+    const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+
+    // Smooth scroll for internal links
+    function scrollToEl(target) {
+      const el = typeof target === 'string' ? $(target) : target;
+      if (!el) return;
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+    }
+    $$('#navLinks a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault(); scrollToEl(a.getAttribute('href')); navLinks.classList.remove('show'); menuToggle.setAttribute('aria-expanded','false');
+    }));
+
+    // Mobile menu
+    const menuToggle = $('#menuToggle'), navLinks = $('#navLinks');
+    menuToggle?.addEventListener('click', () => {
+      const shown = navLinks.classList.toggle('show');
+      menuToggle.setAttribute('aria-expanded', shown ? 'true':'false');
+    });
+
+    // Modal controls
+    const orderModal = $('#orderModal');
+    const orderForm = $('#orderForm');
+    const openOrderBtns = $$('[data-open-order]');
+    const orderClose = $('#orderClose');
+    const cancelOrder = $('#cancelOrder');
+    const toast = $('#toast');
+
+    let preselect = { category: '', custom: false };
+
+    function openModal() {
+      orderModal.classList.add('show'); orderModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => $('#customerName').focus(), 50);
+    }
+    function closeModal() {
+      orderModal.classList.remove('show'); orderModal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+    orderClose.addEventListener('click', closeModal);
+    cancelOrder.addEventListener('click', closeModal);
+    orderModal.addEventListener('click', e => { if (e.target === orderModal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && orderModal.classList.contains('show')) closeModal(); });
+
+    openOrderBtns.forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        preselect.category = btn.dataset.category || '';
+        preselect.custom = btn.dataset.custom === 'true';
+        openModal();
+        if (preselect.category) {
+          $('#category').value = preselect.category;
+          populateItems(preselect.category);
+          toggleCakeFields(preselect.category === 'Cakes');
+        }
+        if (preselect.custom && $('#notes')) {
+          $('#notes').placeholder = 'Custom cake: share theme, colors, name, and any reference link.';
+        } else {
+          $('#notes').placeholder = 'Any notes, inscription text, or special request';
+        }
+      });
+    });
+
+    // Form logic
+    const categoryEl = $('#category');
+    const itemEl = $('#item');
+    const methodEl = $('#method');
+    const addressField = $('#addressField');
+    const cakeFields = $('#cakeFields');
+    const cakeFlavorField = $('#cakeFlavorField');
+
+    const items = {
+      'Sweets': ['Gulab Jamun','Jalebi','Barfi','Motichoor Laddu','Kaju Katli','Rasgulla','Cham Cham','Balushahi','Patisa','Soan Papdi'],
+      'Biscuits': ['Nankhatai','Zeera Biscuit','Butter Cookies','Almond Biscuit','Coconut Biscuit','Chocolate Chip','Oatmeal'],
+      'Cakes': ['Chocolate Fudge','Black Forest','Pineapple','Red Velvet','Fruit Cake','Butterscotch','Vanilla Cream','KitKat Cake']
+    };
+
+    function populateItems(cat) {
+      itemEl.innerHTML = '<option value="">Select an item</option>';
+      (items[cat] || []).forEach(n => {
+        const opt = document.createElement('option'); opt.value = n; opt.textContent = n;
+        itemEl.appendChild(opt);
+      });
+      if (cat === 'Cakes') {
+        const opt = document.createElement('option'); opt.value = 'Custom Design'; opt.textContent = 'Custom Design';
+        itemEl.appendChild(opt);
+      }
+    }
+    function toggleCakeFields(show) {
+      cakeFields.style.display = show ? '' : 'none';
+      cakeFlavorField.style.display = show ? '' : 'none';
+    }
+
+    categoryEl.addEventListener('change', e => {
+      populateItems(e.target.value);
+      toggleCakeFields(e.target.value === 'Cakes');
+    });
+
+    methodEl.addEventListener('change', () => {
+      const isDelivery = methodEl.value === 'Delivery';
+      addressField.style.display = isDelivery ? '' : 'none';
+      $('#address').required = isDelivery;
+    });
+
+    // Default date min today
+    const dateEl = $('#date');
+    if (dateEl) {
+      const today = new Date();
+      const iso = today.toISOString().slice(0,10);
+      dateEl.min = iso;
+    }
+
+    orderForm.addEventListener('submit', e => {
+      e.preventDefault();
+      // Collect form data (frontend only)
+      const fd = new FormData(orderForm);
+      // TODO: Send to API/Email if needed
+      closeModal();
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+      orderForm.reset();
+      toggleCakeFields(false);
+      addressField.style.display = 'none';
+    });
+
+    // Footer year
+    $('#year').textContent = new Date().getFullYear();
+
+    // Expose for inline buttons
+    window.scrollToEl = scrollToEl;
+  </script>
+
+  <!-- Structured data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Shaheen Bakers",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Tehsil Road",
+      "addressLocality": "Usta Muhammad",
+      "addressCountry": "PK"
+    },
+    "telephone": "+92 300 3611996",
+    "contactPoint": [
+      { "@type": "ContactPoint", "telephone": "+92 300 3611996", "contactType": "customer service" },
+      { "@type": "ContactPoint", "telephone": "+92 838 612333", "contactType": "landline" }
+    ],
+    "servesCuisine": "Bakery, Sweets, Cakes, Biscuits",
+    "url": "https://example.com/",
+    "sameAs": [
+      "https://www.facebook.com/",
+      "https://www.instagram.com/"
+    ]
+  }
+  </script>
+</body>
+</html>
